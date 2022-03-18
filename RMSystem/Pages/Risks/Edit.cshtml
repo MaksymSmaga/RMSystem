@@ -1,0 +1,223 @@
+﻿@page "{id:min(0)?}/{handler?}"// Вставка названия метода в адресную строку.
+@using RMSystem.Models
+@using RMSystem.Models.Enums
+@model RMSystem.Pages.Risks.EditModel
+@{
+
+    var photoPath = $"/images/{Model.Risk.PhotoPath ?? "nophoto.png"}";
+    var pageTitle = Model.Risk.Id > 0 ? "Edit" : "Create";
+    ViewData["Title"] = pageTitle;
+}
+
+
+<!-- enctype ="multipart/form-data" для передачи данных из форм-->
+<!-- asp-page-handler = "OnPostUpdateNotifRef" к какому методу отностится форма-->
+<form method="post" class="mt-3" asp-page-handler="OnPostUpdateNotifRef" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Risk.Id" />
+    <input type="hidden" asp-for="Risk.PhotoPath" />
+
+    <div class="row justify-content-center m-3">
+        <div class="col col-lg-8">
+
+            <div class="card cardBoxShadow">
+
+                <div class="card-header cardHeaderStyle text-center">
+                    <h4>Risk Properties:</h4>
+                </div>
+
+                <div class="card-body cardBodyStyle text-center">
+                    <div class="row">
+                        <div class="col col-lg-12">
+
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Description" class="col col-lg-4 col-form-label text-right">Description</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <input asp-for="Risk.Description" class="form-control mr-2 resize" placeholder="@Model.Risk.Description" />
+                                    <span asp-validation-for="Risk.Description" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Iso" class="col col-lg-4 col-form-label text-right">ISO</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Iso" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Iso>()"></select>
+                                    <span asp-validation-for="Risk.Iso" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Process" class="col col-lg-4 col-form-label text-right">Process</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Process" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Process>()"></select>
+                                    <span asp-validation-for="Risk.Process" clasa="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <hr />
+
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Deverity" class="col col-lg-4 col-form-label text-right">Deverity</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Deverity" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Deverity>()"></select>
+                                    <span asp-validation-for="Risk.Deverity" clasa="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Likelihood" class="col col-lg-4 col-form-label text-right">Likelihood</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Likelihood" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Likelihood>()"> </select>
+                                    <span asp-validation-for="Risk.Likelihood" clasa="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Treatment" class="col col-lg-4 col-form-label text-right">Treatment</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Treatment" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Treatment>()">  </select>
+                                    <span asp-validation-for="Risk.Treatment" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Category" class="col col-lg-4 col-form-label text-right">Category</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Category" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Category>()"> </select>
+                                    <span asp-validation-for="Risk.Category" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Cause" class="col col-lg-4 col-form-label text-right">Cause</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Cause" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Cause>()"> </select>
+                                    <span asp-validation-for="Risk.Cause" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                <label asp-for="Risk.Source" class="col col-lg-4 col-form-label text-right">Source</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Source" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Source>()"> </select>
+                                    <span asp-validation-for="Risk.Source" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+
+                            <div class="form-group row ">
+                                <label asp-for="Risk.PhaseManagement" class="col col-lg-4 col-form-label text-right">PhaseManagement</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.PhaseManagement" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<PhaseManagement>()"> </select>
+                                    <span asp-validation-for="Risk.PhaseManagement" clasa="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <hr />
+
+
+                            <div class=" form-group row">
+                                <label asp-for="Risk.Equipment" class="col col-lg-4 col-form-label text-right">Equipment</label>
+
+                                <div class="col-6 col-lg-6">
+                                    <select asp-for="Risk.Equipment" class="custom-select mr-2" asp-items="Html.GetEnumSelectList<Equipment>()"> </select>
+                                    <span asp-validation-for="Risk.Equipment" clasa="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+
+
+                        </div>
+
+                        <!-- <div class = "col col-lg-3" > -->
+                        <!--   <div>-->
+                        <!--       <img class="card-img-top imageThumnail border border-primary" src="@photoPath" asp-append-version="true"/>-->
+                        <!--      <div class="custom-file">-->
+                        <!--          <input asp-for="Photo" class="custom-file-input form-control" />-->
+                        <!--          <label class= "custom-file-label text-left">fileName</label>-->
+                        <!--       </div>-->
+                        <!--   </div>-->
+                        <!--  </div>-->
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-footer text-center" style="background-color: rgba(0,0,0,0.25)">
+                                <button type="submit" class="btn btn-success buttonShadow">Update</button>
+                                <a asp-page="index" class="btn btn-danger buttonShadow ml-10">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts{
+    <script>
+        $(document).ready(function() {
+            $('.custom-file-input').on("change",function(){
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+
+    <!-- Подключаем частичную валидацию на стороне пользователя-->
+    <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+</form>
+
+<!-- Вывод всех ошибок валидации-->
+<div asp-validation-summary="All" class="text-danger text-center"></div>
+
+<!-- asp-page-handler = "OnPostUpdateNotifRef" к какому методу отностится форма-->
+<form method="post" asp="OnPostUpdateNotifRef">
+    <div class="row text-center ">
+        <div class="col form-check">
+            <h4>Notification reference</h4>
+            <input asp-for="Notify" class="form-check-input" />  Receive email notification about notification
+            <br />
+            <button type="submit" class="btn btn-primary text-center">Update Notification</button>
+
+            <!-- Вывод не пустой строки-->
+            @if (!string.IsNullOrWhiteSpace(Model.Message))
+            {
+                <div class="alert alert-success">
+                    <div>
+                        <p class="p-3 mt-2">@Model.Message</p>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+    <hr />
+</form>

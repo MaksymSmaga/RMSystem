@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row text-center">
+    <div class="col">
+        <h3>Welcome to</h3>
+        <! --Вывод переменной из модели в представлении -->
+        <h1>@Model.Message</h1>
+
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <img src="~/images/risk.png" class="w-50 img-fluid img-thumbnail" alt="RMSystem picture" />
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model Risk // Работаем с моделью Risk.
+
+@{ <!--Обределяем путь к фото для свойства PhotoPath, если Null то"nophoto.png" -->
+        var photoPath = $"/images/{ @Model.PhotoPath ?? "nophoto.png"}";
+}
+
+        <!-- Указываем ширину колонки - для разных разрешений-->
+        <div class="container">
+
+            <!-- Контейнер для создания сетки карт с одинаковой высотой и шириной-->
+            <div class="card-desk">
+
+                <!-- Создает карточку, margin:3px-->
+                <div class="card m-3 cardBoxShadow">
+
+                    <!-- Настройка хедера, текст по центру-->
+
+                            <div class="card-header text-left cardHeaderStyle">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img class="card-img img-thumbnail border" src="@photoPath" asp-append-version="true" />
+                                    </div>
+
+                                    <div class="col-10">
+                                        <h6 class="font-weight-bold">[ ID @Model.Id ]   |   Status: Active    |   Created: @Model.DataCreated</h6>
+                                        <h6><span class ="font-weight-bold">Description:</span> @Model.Description</h6>
+
+                                        <div class="text-right">   <!-- Передача параметра ID через адресную строку с помощью asp-route-ID="@Model.Id"  в строке будет ?ID=2 -->
+                                        <span class ="font-weight-bold">Threat:</span> <span class ="text-danger"><b> @Model.Threat</b> </span> <a asp-page="/Risks/Details" asp-route-ID="@Model.Id" class="btn btn-primary m-0 ml-3">View</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+

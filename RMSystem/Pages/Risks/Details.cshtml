@@ -1,0 +1,73 @@
+﻿@page "{id}" // Превратить ?ID=2 в /2/
+@model RMSystem.Pages.Risks.DetailsModel
+@{
+    // Переменные представления.
+    ViewData["Title"] = "Risk Details";
+    var photoPath = $"/images/{Model.Risk.PhotoPath ?? "nophoto.png"}";
+}
+
+<div class="row cardTextLeftFloating">
+
+    <div class="container col-7 col-lg-7">
+        @await Component.InvokeAsync("ProcessCount", new {process = Model.Risk.Process})
+    </div>
+</div>
+<div class="row justify-content-center m-3">
+    <div class="col-6 container">
+
+        <div class="card cardBoxShadow">
+
+
+            <div class="card-header cardHeaderStyle">
+                <div class="row">
+                    <div class="col-2 text-left">
+                        <img class="card-img img-thumbnail border" src="@photoPath" asp-append-version="true" />
+                    </div>
+
+                    <div class="col-10 text-left">
+
+                        <h6><b>[ID @Model.Risk.Id ]   |    Created: @Model.Risk.DataCreated   |    Status: @Model.Risk.Iso   |    Threat: @Model.Risk.Threat</b></h6>
+                        <h5>Description: @Model.Risk.Description</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body cardBodyStyle text-left">
+                <div class="row cardTextLeftFloating">
+                    <div class="col-4">
+
+                        <h5><b>Risk ID: </b> @Model.Risk.Id Process: @Model.Risk.Process</h5>
+                        <h5><b>Cause: </b> @Model.Risk.Cause</h5>
+                        <h5><b>Source: </b> @Model.Risk.Source</h5>
+
+                    </div>
+                    <div class="col-4">
+                        <h5><b>Equipment: </b> @Model.Risk.Equipment</h5>
+                        <h5><b>Category: </b> @Model.Risk.Category</h5>
+                        <h5><b>Deverity: </b> @Model.Risk.Deverity</h5>
+                    </div>
+                    <div class="col-4">
+                        <h5><b>Likelihood: </b>@Model.Risk.Likelihood</h5>
+                        <h5><b>Treatment:</b> @Model.Risk.Treatment</h5>
+                        <h5><b>Phase: </b> @Model.Risk.PhaseManagement</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card-footer text-right" style="background-color:#FFFFFF; ">
+                            <a asp-page="/Risks/Delete" asp-route-ID="@Model.Risk.Id" class="btn btn-danger buttonShadow">Delete</a>
+                            <a asp-page="/Risks/Edit" asp-route-ID="@Model.Risk.Id" class="btn btn-primary m-0">Edit</a>
+                            <a asp-page="Risks" class="btn btn-success buttonShadow">Back</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

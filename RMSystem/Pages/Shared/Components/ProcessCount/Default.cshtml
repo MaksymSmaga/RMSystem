@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ProcessCount>
+
+<table table class = "table table-hover rounded-pill">
+<thead class="thead-light">
+    <tr>
+        <th>Process</th>
+        <th>Number of risks</th>
+    </tr>
+
+</thead>
+
+<tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th>@item.Process</th>
+            <th>@item.Count</th>
+        </tr>
+        }
+</tbody>
+
+</table>

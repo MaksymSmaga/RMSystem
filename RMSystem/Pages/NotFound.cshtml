@@ -1,0 +1,17 @@
+﻿@page
+@model RMSystem.Pages.NotFoundModel
+@{
+    ViewData["Title"] = "NotFound";
+}
+
+<div class="row">
+    <div class="col text-center">
+        <img src="~/images/NotFound.png" alt="Page not found" />
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <h4>The resource you are looking for cannot be found!</h4>
+        <a asp-page="/Risks/Risks" class="btn btn-primary">Click here to get back to Risks list page.</a>
+    </div>
+</div>

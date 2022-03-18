@@ -1,0 +1,54 @@
+﻿@page
+@model RMSystem.Pages.Risks.RisksModel
+@{
+    ViewData["Title"] = "Risks";
+
+    // Единоразовый вывод данных полученные из другого предствления.
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+}
+
+<form metod="get" class="container col-6 mb-3">
+
+    <div class="input-group">
+
+        <input class="form-control" asp-for="Search" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+</form>
+
+
+
+<div class="row cardTextLeftFloating">
+    <div class="col">
+        <!--Циклично выводим елементы листа Risks-->
+        @foreach (var item in Model.Risks)
+        {
+
+            <partial name="_RiskPartial" model="item" />
+
+
+            <!-- Настройка футера, текст по центру-->
+            <!--<div class="card-footer text-right">-->
+            <!--  <a href="#" class="btn btn-danger m-1">Delete</a> -->
+            <!-- Передаем ID asp-route-ID="@item.Id"-->
+            <!-- <a asp-page="/Risks/Edit" asp-route-ID="@item.Id" class="btn btn-primary m-1">Edit</a> -->
+            <!--<a asp-page="/Risks/Details" asp-route-ID="@item.Id" class="btn btn-success m-1">View</a>-->
+            <!-- </div>-->
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
